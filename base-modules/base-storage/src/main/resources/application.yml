@@ -1,0 +1,27 @@
+﻿# Tomcat
+server:
+  port: 9303
+
+# Spring
+spring:
+  application:
+    name: base-storage
+  profiles:
+    active: @profiles.active@
+
+--- # nacos
+spring:
+  cloud:
+    nacos:
+      server-addr: @nacos.server@
+      discovery:
+        group: @nacos.discovery.group@
+        namespace: @nacos.namespace@
+      config:
+        group: @nacos.config.group@
+        namespace: @nacos.namespace@
+  config:
+    import:
+      - optional:nacos:application-common.yml
+      - optional:nacos:datasource.yml
+      - optional:nacos:${spring.application.name}.yml

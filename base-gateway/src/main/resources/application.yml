@@ -1,0 +1,28 @@
+# Tomcat
+#server:
+#  port: 8080
+#  servlet:
+#    context-path: /
+
+# Spring
+spring:
+  application:
+    name: base-gateway
+  profiles:
+    active: @profiles.active@
+
+--- # nacos
+spring:
+  cloud:
+    nacos:
+      server-addr: @nacos.server@
+      discovery:
+        group: @nacos.discovery.group@
+        namespace: @nacos.namespace@
+      config:
+        group: @nacos.config.group@
+        namespace: @nacos.namespace@
+  config:
+    import:
+      - optional:nacos:application-common.yml
+      - optional:nacos:${spring.application.name}.yml

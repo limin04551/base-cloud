@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+<!--    <parent>-->
+<!--        <groupId>com.base</groupId>-->
+<!--        <artifactId>base-common</artifactId>-->
+<!--        <version>0.0.1-SNAPSHOT</version>-->
+<!--    </parent>-->
+    <groupId>com.base</groupId>
+    <artifactId>base-common-bom</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>base-common-bom</name>
+    <description>base-common-bom common依赖项</description>
+    <packaging>pom</packaging>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- 数据库服务 -->
+            <dependency>
+                <groupId>com.base</groupId>
+                <artifactId>base-common-mybatis</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <!-- web服务 -->
+            <dependency>
+                <groupId>com.base</groupId>
+                <artifactId>base-common-web</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <!-- 分布式事务seata -->
+            <dependency>
+                <groupId>com.base</groupId>
+                <artifactId>base-common-seata</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <!-- rpc服务调用dubbo -->
+            <dependency>
+                <groupId>com.base</groupId>
+                <artifactId>base-common-dubbo</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <!-- 核心模块 -->
+            <dependency>
+                <groupId>com.base</groupId>
+                <artifactId>base-common-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+
+    </dependencyManagement>
+
+
+
+</project>

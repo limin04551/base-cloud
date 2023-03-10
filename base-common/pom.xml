@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.base</groupId>
+        <artifactId>base-cloud</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <artifactId>base-common</artifactId>
+    <description>base-common通用模块</description>
+    <packaging>pom</packaging>
+    <modules>
+        <module>base-common-bom</module>
+        <module>base-common-web</module>
+        <module>base-common-core</module>
+        <module>base-common-mybatis</module>
+        <module>base-common-seata</module>
+        <module>base-common-dubbo</module>
+<!--        <module>base-common-sa-token</module>-->
+    </modules>
+
+
+</project>
