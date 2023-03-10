@@ -4,7 +4,6 @@ import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.base.account.api.RemoteAccountService;
 import com.base.account.domain.Account;
-import com.base.account.mapper.AccountMapper;
 import com.base.account.service.AccountService;
 import com.base.common.core.exception.base.BaseException;
 import io.seata.core.context.RootContext;
