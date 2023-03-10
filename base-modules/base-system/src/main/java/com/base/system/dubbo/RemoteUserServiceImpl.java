@@ -2,8 +2,6 @@ package com.base.system.dubbo;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.ObjectUtil;
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.base.common.core.enums.UserStatus;
 import com.base.common.core.exception.base.BaseException;
@@ -11,18 +9,16 @@ import com.base.system.api.RemoteUserService;
 import com.base.system.api.model.LoginUser;
 import com.base.system.domain.User;
 import com.base.system.mapper.UserMapper;
-import com.base.system.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 /**
- * 操作日志记录
- *
- * @author Lion Li
+ * @author limin
+ * @description 操作日志记录
+ * @date 2023/3/10
  */
 @RequiredArgsConstructor
 @Service

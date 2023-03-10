@@ -12,6 +12,6 @@ public interface RemoteStorageService {
     /**
      * 扣除存储数量
      */
-    void deduct(String commodityCode, int count) throws BaseException;
+    Integer deduct(String commodityCode, int count) throws BaseException;
 
 }

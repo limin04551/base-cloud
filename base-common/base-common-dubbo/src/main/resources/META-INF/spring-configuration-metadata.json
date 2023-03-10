@@ -1,0 +1,6 @@
+{"properties": [
+  {
+    "name": "spring.cloud.nacos.dubbo.namespace",
+    "defaultValue": ""
+  }
+]}

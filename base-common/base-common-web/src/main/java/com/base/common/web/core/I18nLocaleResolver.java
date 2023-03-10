@@ -6,10 +6,11 @@ import org.springframework.web.servlet.LocaleResolver;
 
 import java.util.Locale;
 
+
 /**
- * 获取请求头国际化信息
- *
- * @author Lion Li
+ * @author limin
+ * @description 获取请求头国际化信息
+ * @date 2023/3/10
  */
 public class I18nLocaleResolver implements LocaleResolver {
 

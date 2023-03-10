@@ -4,10 +4,11 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+
 /**
- * mybatis-plus配置类(下方注释有插件介绍)
- *
- * @author Lion Li
+ * @author limin
+ * @description mybatis-plus配置类(下方注释有插件介绍)
+ * @date 2023/3/10
  */
 @AutoConfiguration
 @EnableTransactionManagement(proxyTargetClass = true)

@@ -1,9 +1,10 @@
 package com.base.common.core.constant;
 
+
 /**
- * 返回状态码
- *
- * @author Lion Li
+ * @author limin
+ * @description 返回状态码
+ * @date 2023/3/10
  */
 public interface HttpStatus {
     /**

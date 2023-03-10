@@ -1,6 +1,8 @@
 package com.base.common.core.constant;
 
 /**
+ * @author limin
+ * @description
  * 缓存组名称常量
  * <p>
  * key 格式为 cacheNames#ttl#maxIdleTime#maxSize
@@ -10,8 +12,7 @@ package com.base.common.core.constant;
  * maxSize 组最大长度 根据LRU算法清理溢出数据 如果设置为0则无限长 默认为0
  * <p>
  * 例子: test#60s、test#0#60s、test#0#1m#1000、test#1h#0#500
- *
- * @author Lion Li
+ * @date 2023/3/10
  */
 public interface CacheNames {
 

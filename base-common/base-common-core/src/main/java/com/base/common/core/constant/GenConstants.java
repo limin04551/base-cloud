@@ -1,9 +1,9 @@
 package com.base.common.core.constant;
 
 /**
- * 代码生成通用常量
- *
- * @author Lion Li
+ * @author limin
+ * @description 代码生成通用常量
+ * @date 2023/3/10
  */
 public interface GenConstants {
     /**

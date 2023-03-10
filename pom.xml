@@ -49,7 +49,6 @@
                 <nacos.server>127.0.0.1:8848</nacos.server>
                 <nacos.discovery.group>DEFAULT_GROUP</nacos.discovery.group>
                 <nacos.config.group>DEFAULT_GROUP</nacos.config.group>
-                <nacos.namespace>f1b432ed-7e83-4c5e-b8c7-75fb797c5267</nacos.namespace>
 <!--                <logstash.address>127.0.0.1:4560</logstash.address>-->
             </properties>
             <activation>
@@ -64,7 +63,6 @@
                 <nacos.server>127.0.0.1:8848</nacos.server>
                 <nacos.discovery.group>DEFAULT_GROUP</nacos.discovery.group>
                 <nacos.config.group>DEFAULT_GROUP</nacos.config.group>
-                <nacos.namespace>f1b432ed-7e83-4c5e-b8c7-75fb797c5267</nacos.namespace>
 <!--                <logstash.address>127.0.0.1:4560</logstash.address>-->
             </properties>
         </profile>
@@ -188,6 +186,13 @@
                 <groupId>cn.dev33</groupId>
                 <artifactId>sa-token-jwt</artifactId>
                 <version>${satoken.version}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.apache.dubbo/dubbo -->
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo</artifactId>
+                <version>${dubbo.version}</version>
             </dependency>
 
 <!--            <dependency>-->

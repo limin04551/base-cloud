@@ -20,11 +20,13 @@ spring:
       discovery:
         # 注册组
         group: @nacos.discovery.group@
-        namespace: @nacos.namespace@
+        namespace: @profiles.active@
       config:
         # 配置组
         group: @nacos.config.group@
-        namespace: @nacos.namespace@
+        namespace: @profiles.active@
+      dubbo:
+        namespace: dubbo-@profiles.active@
   config:
     import:
       - optional:nacos:application-common.yml

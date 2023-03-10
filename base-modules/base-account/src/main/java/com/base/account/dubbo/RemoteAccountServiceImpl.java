@@ -31,23 +31,25 @@ public class RemoteAccountServiceImpl implements RemoteAccountService {
     @Override
     public void debit(String userId, int money) throws BaseException {
         log.info("全局事务id:{}" , RootContext.getXID());
-        if(xid == null){
-            xid = RootContext.getXID();
-            try {
-                Thread.sleep(3000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
+//        if(xid == null||!xid.equals(RootContext.getXID())){
+//            xid = RootContext.getXID();
+//            try {
+//                log.info("模拟第一次请求dubbo超时");
+//                Thread.sleep(3500);
+//            } catch (InterruptedException e) {
+//                throw new RuntimeException(e);
+//            }
+//        }
         Account account = accountService.getOne(Wrappers.<Account>lambdaQuery().eq(Account::getUserId, userId));
         if (ObjectUtil.isNull(account)) {
             throw new BaseException("用户不存在");
         }
         int leftMoney = account.getMoney() - money;
+        log.info("账户:{}余额{},消费:{},剩余:{}" , account.getUserId(),account.getMoney(),money,leftMoney);
         if (leftMoney < 0) {
             throw new BaseException("账户余额不足");
         }
-
+//        log.info("账户:{}余额{},消费:{},剩余:{}" , account.getUserId(),account.getMoney(),money,leftMoney);
         accountService.update(Wrappers.<Account>lambdaUpdate().eq(Account::getUserId, userId)
                 .set(Account::getMoney, leftMoney));
     }

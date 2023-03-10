@@ -7,9 +7,9 @@ import org.apache.dubbo.rpc.*;
 import org.apache.dubbo.rpc.service.GenericService;
 
 /**
- * dubbo日志过滤器
- *
- * @author Lion Li
+ * @author limin
+ * @description dubbo日志过滤器
+ * @date 2023/3/10
  */
 @Slf4j
 @Activate(group = {CommonConstants.PROVIDER, CommonConstants.CONSUMER}, order = Integer.MAX_VALUE)

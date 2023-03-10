@@ -13,6 +13,8 @@ import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.concurrent.ConcurrentHashMap;
+
 /**
  * @author min
  * @description
@@ -26,9 +28,35 @@ public class RemoteStorageServiceImpl implements RemoteStorageService {
 
     private final StorageService storageService;
 
+    private static ConcurrentHashMap<String, Integer> storageMap = new ConcurrentHashMap<>();
+
+    private static String xid = null;
+
     @Override
-    public void deduct(String commodityCode, int count) throws BaseException {
-        log.info("全局事务id:{}" , RootContext.getXID());
+    public Integer deduct(String commodityCode, int count) throws BaseException {
+        String currentXid = RootContext.getXID();
+        log.info("全局事务id:{}", currentXid);
+        if (storageMap.containsKey(currentXid)) {
+            log.info("该事物{}已处理完成,跳过", currentXid);
+            return storageMap.get(currentXid);
+        }
+        //模拟重试导致幂等问题
+//        if (xid == null || !xid.equals(currentXid)) {
+//            xid = currentXid;
+//            try {
+//                log.info("模拟第一次请求dubbo超时");
+//                Thread.sleep(3200);
+//            } catch (InterruptedException e) {
+//                throw new RuntimeException(e);
+//            }
+//        } else {
+//            try {
+//                log.info("模拟第二次请求dubbo处理时长");
+//                Thread.sleep(1500);
+//            } catch (InterruptedException e) {
+//                throw new RuntimeException(e);
+//            }
+//        }
         Storage storage = storageService.getOne(Wrappers.<Storage>lambdaQuery().eq(Storage::getCommodityCode, commodityCode));
         if (ObjectUtil.isNull(storage)) {
             throw new BaseException("商品不存在");
@@ -41,6 +69,14 @@ public class RemoteStorageServiceImpl implements RemoteStorageService {
                 .eq(Storage::getCommodityCode, commodityCode)
                 .set(Storage::getCount, leftCount)
         );
-        log.info("商品{}库存{}扣除{}剩余{}",storage.getCommodityCode(),storage,count,leftCount);
+        log.info("商品{}库存{}扣除{}剩余{}", storage.getCommodityCode(), storage, count, leftCount);
+        if (storageMap.containsKey(currentXid)) {
+            //toDo 事务局部回滚
+            log.info("该事物{}已处理完成,跳过", currentXid);
+            return storageMap.get(currentXid);
+        } else {
+            storageMap.put(currentXid, leftCount);
+        }
+        return leftCount;
     }
 }

@@ -19,8 +19,8 @@ public class BusinessController {
     private final BusinessService businessService;
 
     @GetMapping("purchase")
-    public void purchase(String userId, String commodityCode, int orderCount, int money){
-        businessService.purchase(userId, commodityCode,orderCount, money);
+    public String purchase(String userId, String commodityCode, int orderCount, int money){
+      return  businessService.purchase(userId, commodityCode,orderCount, money);
     }
 
 

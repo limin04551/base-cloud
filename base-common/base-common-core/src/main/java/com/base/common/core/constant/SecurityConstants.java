@@ -1,9 +1,10 @@
 package com.base.common.core.constant;
 
+
 /**
- * 权限相关通用常量
- *
- * @author Lion Li
+ * @author limin
+ * @description 权限相关通用常量
+ * @date 2023/3/10
  */
 public interface SecurityConstants {
     /**

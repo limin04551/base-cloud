@@ -5,6 +5,7 @@ import com.base.common.core.constant.HttpStatus;
 import com.base.common.core.domain.R;
 import com.base.common.core.exception.base.BaseException;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.dubbo.rpc.RpcException;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -57,11 +58,19 @@ public class GlobalExceptionHandler implements ResponseBodyAdvice<Object> {
         return new R<>(HttpStatus.NOT_FOUND,String.format("参数缺失:%s",e.getMessage()));
     }
 
+    @ExceptionHandler(RpcException.class)
+    public Object RpcExceptionHandler(RpcException e) {
+        log.error(e.getStackTrace()[0].getClassName());
+        log.error(e.getStackTrace()[0].getLineNumber() + "行 ");
+        log.error(e.getClass().getName());
+        log.error(e.getMessage());
+        return new R<>(HttpStatus.ERROR,"dubbo远程调用异常");
+    }
+
     @ExceptionHandler(BaseException.class)
     public Object baseExceptionHandler(BaseException e) {
         return e.getR();
     }
-
 
     /**
      * 处理所有不可知的异常

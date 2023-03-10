@@ -6,10 +6,11 @@ import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguratio
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.LocaleResolver;
 
+
 /**
- * 国际化配置
- *
- * @author Lion Li
+ * @author limin
+ * @description 国际化配置
+ * @date 2023/3/10
  */
 @AutoConfiguration(before = WebMvcAutoConfiguration.class)
 public class I18nConfig {

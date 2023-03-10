@@ -1,9 +1,10 @@
 package com.base.common.core.constant;
 
+
 /**
- * 通用常量信息
- *
- * @author Lion Li
+ * @author limin
+ * @description 通用常量信息
+ * @date 2023/3/10
  */
 public interface Constants {
     /**

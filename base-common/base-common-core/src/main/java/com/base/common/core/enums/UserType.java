@@ -3,11 +3,11 @@ package com.base.common.core.enums;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+
 /**
- * 设备类型
- * 针对多套 用户体系
- *
- * @author Lion Li
+ * @author limin
+ * @description 设备类型 针对多套 用户体系
+ * @date 2023/3/10
  */
 @Getter
 @AllArgsConstructor

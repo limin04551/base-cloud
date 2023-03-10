@@ -1,9 +1,9 @@
 package com.base.order.dubbo;
 
-
 import com.base.account.api.RemoteAccountService;
 import com.base.order.api.RemoteOrderService;
 import com.base.order.api.model.Order;
+import com.base.order.mapper.OrderMapper;
 import com.base.order.service.OrderService;
 import io.seata.core.context.RootContext;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +23,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class RemoteOrderServiceImpl implements RemoteOrderService {
 
-    @DubboReference
+    @DubboReference(retries = 0)
     private RemoteAccountService accountService;
 
     private final OrderService orderService;
