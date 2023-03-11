@@ -1,7 +1,4 @@
 ## 平台简介
-
-
-
 > _base-cloud_ `分布式微服务后台架构` 基于最新spring-cloud-alibaba微服务中间件与Spring-Boot3.0.x构建,最低要求为JDK17
 
 ## 架构图
@@ -55,7 +52,5 @@
  |   ❌    | 部署方式     | Docker      k8s          | [Docker文档](https://docs.docker.com/)                                                               | 容器编排 一键部署业务集群                     |
 |   ❌    | 国际化      | SpringMessage            | [SpringMVC文档](https://docs.spring.io/spring-framework/docs/current/reference/html/web.html#mvc)    | Spring标准国际化方案                     |
 
-
 ## 贡献代码
-
-欢迎各路英雄豪杰 `PR` 代码 请提交到 `dev` 开发分支 统一测试发版
+欢迎 `PR` 代码 请提交到 `dev` 开发分支 统一测试发版
