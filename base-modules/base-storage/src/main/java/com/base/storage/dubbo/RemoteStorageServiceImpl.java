@@ -10,7 +10,6 @@ import io.seata.core.context.RootContext;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.ConcurrentHashMap;
@@ -32,6 +31,8 @@ public class RemoteStorageServiceImpl implements RemoteStorageService {
 
     private static String xid = null;
 
+
+
     @Override
     public Integer deduct(String commodityCode, int count) throws BaseException {
         String currentXid = RootContext.getXID();
@@ -40,6 +41,13 @@ public class RemoteStorageServiceImpl implements RemoteStorageService {
             log.info("该事物{}已处理完成,跳过", currentXid);
             return storageMap.get(currentXid);
         }
+        try {
+            log.info("模拟业务处理");
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
         //模拟重试导致幂等问题
 //        if (xid == null || !xid.equals(currentXid)) {
 //            xid = currentXid;

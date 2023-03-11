@@ -39,9 +39,9 @@ public class BusinessServiceImpl implements BusinessService {
         }
         Integer result = remoteStorageService.deduct(commodityCode, orderCount);
         Order order = remoteOrderService.create(userId, commodityCode, orderCount, money);
-        if(new Random().nextInt(10) <5 ){
-            throw new BaseException("模拟随机异常全局回滚");
-        }
+//        if(new Random().nextInt(10) <5 ){
+//            throw new BaseException("模拟随机异常全局回滚");
+//        }
         return String.format("剩余库存为:%s;订单信息:%s",result,order.toString());
     }
 }
