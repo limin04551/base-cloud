@@ -38,6 +38,7 @@
         <p6spy.version>3.9.1</p6spy.version>
         <dubbo.version>3.2.0-beta.5</dubbo.version>
         <jackson.version>2.14.2</jackson.version>
+        <redission.version>3.20.0</redission.version>
     </properties>
 
     <profiles>
@@ -195,7 +196,14 @@
                 <version>${dubbo.version}</version>
             </dependency>
 
-<!--            <dependency>-->
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson-spring-boot-starter</artifactId>
+                <version>${redission.version}</version>
+            </dependency>
+
+
+            <!--            <dependency>-->
 <!--                <groupId>cn.dev33</groupId>-->
 <!--                <artifactId>sa-token-core</artifactId>-->
 <!--                <version>${satoken.version}</version>-->
