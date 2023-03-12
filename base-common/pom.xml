@@ -17,7 +17,8 @@
         <module>base-common-mybatis</module>
         <module>base-common-seata</module>
         <module>base-common-dubbo</module>
-<!--        <module>base-common-sa-token</module>-->
+        <module>base-common-redis</module>
+        <module>base-common-sa-token</module>
     </modules>
 
 
