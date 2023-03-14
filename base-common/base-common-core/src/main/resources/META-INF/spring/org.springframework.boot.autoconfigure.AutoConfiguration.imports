@@ -1,1 +1,2 @@
 com.base.common.core.handle.GlobalExceptionHandler
+com.base.common.core.config.WebResponseConfig

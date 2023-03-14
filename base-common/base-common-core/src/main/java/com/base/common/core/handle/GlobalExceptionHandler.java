@@ -41,9 +41,9 @@ public class GlobalExceptionHandler implements ResponseBodyAdvice<Object> {
 
     @Override
     public Object beforeBodyWrite(Object o, MethodParameter methodParameter, MediaType mediaType, Class<? extends HttpMessageConverter<?>> aClass, ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) {
-        if (o instanceof String) {
-            return o;
-        }
+//        if (o instanceof String) {
+//            return o;
+//        }
 
         return new R<>(o);
     }
@@ -81,8 +81,10 @@ public class GlobalExceptionHandler implements ResponseBodyAdvice<Object> {
     @ExceptionHandler(Exception.class)
     public R handleException(Exception e) {
         // 打印堆栈信息
-        log.error(e.getStackTrace()[0].getClassName());
-        log.error(e.getStackTrace()[0].getLineNumber() + "行 ");
+        if(e.getStackTrace().length>0){
+            log.error(e.getStackTrace()[0].getClassName());
+            log.error(e.getStackTrace()[0].getLineNumber() + "行 ");
+        }
         log.error(e.getClass().getName());
         log.error(e.getMessage());
         e.printStackTrace();
