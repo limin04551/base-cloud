@@ -2,6 +2,7 @@ package com.base.business.service.impl;
 
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.RandomUtil;
+import com.baomidou.lock.annotation.Lock4j;
 import com.base.business.service.BusinessService;
 import com.base.common.core.exception.base.BaseException;
 import com.base.order.api.RemoteOrderService;
@@ -30,15 +31,30 @@ public class BusinessServiceImpl implements BusinessService {
     @DubboReference(retries = 0)
     private RemoteOrderService remoteOrderService;
 
+    private static volatile int i = 0;
+
     @Override
     @GlobalTransactional(rollbackFor = Exception.class)
+//    @Lock4j(keys = {"'user:'+#userId","'commodity:'+#commodityCode"},expire = -1, acquireTimeout = 3000)
+    @Lock4j(expire = -1, acquireTimeout = 3000) //分布式锁 todo 需要实现颗粒度更细的锁,如商品锁,账户锁否则会大量阻塞
     public String purchase(String userId, String commodityCode, int orderCount, int money) {
         log.info("全局事务id:{}", RootContext.getXID());
         if (ObjectUtil.isNull(RootContext.getXID())) {
             throw new BaseException("分布式事务xid为:null");
         }
         Integer result = remoteStorageService.deduct(commodityCode, orderCount);
+
         Order order = remoteOrderService.create(userId, commodityCode, orderCount, money);
+        try {
+            if (i % 2 == 1) {
+                log.info("模拟业务处理偶尔慢");
+                Thread.sleep(200);
+            }
+
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        i++;
 //        if(new Random().nextInt(10) <5 ){
 //            throw new BaseException("模拟随机异常全局回滚");
 //        }

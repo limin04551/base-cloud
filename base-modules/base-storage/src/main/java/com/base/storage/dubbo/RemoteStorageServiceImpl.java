@@ -27,26 +27,12 @@ public class RemoteStorageServiceImpl implements RemoteStorageService {
 
     private final StorageService storageService;
 
-    private static ConcurrentHashMap<String, Integer> storageMap = new ConcurrentHashMap<>();
-
-    private static String xid = null;
-
-
 
     @Override
     public Integer deduct(String commodityCode, int count) throws BaseException {
         String currentXid = RootContext.getXID();
         log.info("全局事务id:{}", currentXid);
-        if (storageMap.containsKey(currentXid)) {
-            log.info("该事物{}已处理完成,跳过", currentXid);
-            return storageMap.get(currentXid);
-        }
-        try {
-            log.info("模拟业务处理");
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+
 
         //模拟重试导致幂等问题
 //        if (xid == null || !xid.equals(currentXid)) {
@@ -66,25 +52,26 @@ public class RemoteStorageServiceImpl implements RemoteStorageService {
 //            }
 //        }
         Storage storage = storageService.getOne(Wrappers.<Storage>lambdaQuery().eq(Storage::getCommodityCode, commodityCode));
+
         if (ObjectUtil.isNull(storage)) {
             throw new BaseException("商品不存在");
         }
         int leftCount = storage.getCount() - count;
+        log.info("剩余:"+leftCount);
         if (leftCount < 0) {
             throw new BaseException("库存不足");
         }
+//        try {
+//            log.info("模拟业务处理");
+//            Thread.sleep(2000);
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        }
         storageService.update(Wrappers.<Storage>lambdaUpdate()
                 .eq(Storage::getCommodityCode, commodityCode)
                 .set(Storage::getCount, leftCount)
         );
         log.info("商品{}库存{}扣除{}剩余{}", storage.getCommodityCode(), storage, count, leftCount);
-        if (storageMap.containsKey(currentXid)) {
-            //toDo 事务局部回滚
-            log.info("该事物{}已处理完成,跳过", currentXid);
-            return storageMap.get(currentXid);
-        } else {
-            storageMap.put(currentXid, leftCount);
-        }
         return leftCount;
     }
 }

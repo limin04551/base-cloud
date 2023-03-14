@@ -46,6 +46,12 @@
                 <artifactId>base-common-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <!-- 核心模块 -->
+            <dependency>
+                <groupId>com.base</groupId>
+                <artifactId>base-common-redis</artifactId>
+                <version>${project.version}</version>
+            </dependency>
         </dependencies>
 
     </dependencyManagement>
