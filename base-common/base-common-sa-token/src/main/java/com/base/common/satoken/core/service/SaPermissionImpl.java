@@ -11,7 +11,7 @@ import java.util.List;
  * @date 2023/3/11
  */
 // 保证此类被SpringBoot扫描，完成Sa-Token的自定义权限验证扩展
-public class StpInterfaceImpl implements StpInterface {
+public class SaPermissionImpl implements StpInterface {
 
     /**
      * 返回一个账号所拥有的权限码集合

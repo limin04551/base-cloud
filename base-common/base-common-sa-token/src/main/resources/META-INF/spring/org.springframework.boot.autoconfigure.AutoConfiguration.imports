@@ -1,0 +1,3 @@
+com.base.common.satoken.core.dao.SaTokenDao
+com.base.common.satoken.core.service.SaPermissionImpl
+com.base.common.satoken.config.SaTokenConfiguration
