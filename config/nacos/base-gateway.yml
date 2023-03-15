@@ -1,0 +1,35 @@
+file:
+  web-path: http://localhost:8805/file/test
+  file-path: /Users/arthur/workspace/file/
+useLocal: true
+
+# Tomcat
+server:
+  port: 8080
+
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+        routes:
+          - id: base-system
+            uri: lb://base-system
+            predicates:
+              - Path=/base-system/**
+            filters:
+              - RewritePath=/base-system/(?<remaining>.*), /${remaining}
+          - id: base-auth
+            uri: lb://base-auth
+            predicates:
+              - Path=/base-auth/**
+            filters:
+              - RewritePath=/base-auth/(?<remaining>.*), /${remaining}
+          - id: base-business
+            uri: lb://base-business
+            predicates:
+              - Path=/base-business/**
+            filters:
+              - RewritePath=/base-business/(?<remaining>.*), /${remaining}
