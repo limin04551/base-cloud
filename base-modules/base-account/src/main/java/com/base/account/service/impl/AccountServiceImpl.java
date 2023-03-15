@@ -1,6 +1,6 @@
 package com.base.account.service.impl;
 
-import com.base.account.domain.Account;
+import com.base.account.api.model.Account;
 import com.base.account.mapper.AccountMapper;
 import com.base.account.service.AccountService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;

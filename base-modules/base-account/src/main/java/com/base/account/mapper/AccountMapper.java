@@ -1,6 +1,6 @@
 package com.base.account.mapper;
 
-import com.base.account.domain.Account;
+import com.base.account.api.model.Account;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

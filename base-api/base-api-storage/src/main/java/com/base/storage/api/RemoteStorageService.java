@@ -1,6 +1,7 @@
 package com.base.storage.api;
 
 import com.base.common.core.exception.base.BaseException;
+import jakarta.validation.ValidationException;
 
 /**
  * @author min
@@ -12,6 +13,6 @@ public interface RemoteStorageService {
     /**
      * 扣除存储数量
      */
-    Integer deduct(String commodityCode, int count) throws BaseException;
+    Integer deduct(String commodityCode, int count) throws BaseException, ValidationException;
 
 }

@@ -4,6 +4,7 @@ import com.base.common.core.annotation.IgnorReponseAdvice;
 import com.base.common.core.constant.HttpStatus;
 import com.base.common.core.domain.R;
 import com.base.common.core.exception.base.BaseException;
+import jakarta.validation.ValidationException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.rpc.RpcException;
 import org.springframework.core.MethodParameter;
@@ -55,21 +56,23 @@ public class GlobalExceptionHandler implements ResponseBodyAdvice<Object> {
 
     @ExceptionHandler(IllegalStateException.class)
     public R handleIllegalStateException(IllegalStateException e) {
-        return new R<>(HttpStatus.NOT_FOUND,String.format("参数缺失:%s",e.getMessage()));
+        return new R<>(HttpStatus.ERROR,String.format("参数缺失:%s",e.getMessage()));
     }
 
     @ExceptionHandler(RpcException.class)
     public Object RpcExceptionHandler(RpcException e) {
-        log.error(e.getStackTrace()[0].getClassName());
-        log.error(e.getStackTrace()[0].getLineNumber() + "行 ");
-        log.error(e.getClass().getName());
-        log.error(e.getMessage());
-        return new R<>(HttpStatus.ERROR,"dubbo远程调用异常");
+       e.printStackTrace();
+        return new R<>(HttpStatus.ERROR,e.getMessage());
     }
 
     @ExceptionHandler(BaseException.class)
     public Object baseExceptionHandler(BaseException e) {
         return e.getR();
+    }
+
+    @ExceptionHandler(ValidationException.class)
+    public R handleValidationExceptionException(ValidationException e) {
+        return new R<>(HttpStatus.ERROR,e.getMessage());
     }
 
     /**

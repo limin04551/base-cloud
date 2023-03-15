@@ -1,6 +1,7 @@
 package com.base.order.dubbo;
 
 import com.base.account.api.RemoteAccountService;
+import com.base.account.api.model.Account;
 import com.base.order.api.RemoteOrderService;
 import com.base.order.api.model.Order;
 import com.base.order.mapper.OrderMapper;
@@ -31,7 +32,7 @@ public class RemoteOrderServiceImpl implements RemoteOrderService {
     @Override
     public Order create(String userId, String commodityCode, int orderCount, int orderMoney) {
         log.info("全局事务id:{}" , RootContext.getXID());
-        accountService.debit(userId, orderMoney);
+        accountService.debit(new Account(null,userId, orderMoney));
 
         Order order = new Order().setUserId(userId)
                 .setCommodityCode(commodityCode)

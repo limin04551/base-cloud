@@ -1,6 +1,8 @@
 package com.base.account.api;
 
+import com.base.account.api.model.Account;
 import com.base.common.core.exception.base.BaseException;
+import jakarta.validation.ValidationException;
 
 /**
  * @author min
@@ -12,6 +14,6 @@ public interface RemoteAccountService {
     /**
      * 从用户账户中借出
      */
-    void debit(String userId, int money) throws BaseException;
+    void debit(Account account) throws BaseException, ValidationException;
 
 }
