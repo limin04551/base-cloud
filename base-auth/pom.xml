@@ -30,6 +30,12 @@
 
         <dependency>
             <groupId>com.base</groupId>
+            <artifactId>base-common-sa-token</artifactId>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.base</groupId>
             <artifactId>base-common-web</artifactId>
         </dependency>
 

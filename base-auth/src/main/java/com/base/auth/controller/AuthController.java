@@ -1,12 +1,15 @@
 package com.base.auth.controller;
 
+import com.base.auth.model.LoginBody;
 import com.base.auth.service.AuthService;
 import com.base.common.core.exception.base.BaseException;
 import com.base.system.api.model.LoginUser;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author min
@@ -20,17 +23,11 @@ public class AuthController {
 
     private final AuthService authService;
 
-    @GetMapping("login")
-    public LoginUser login(String username) {
-      return authService.login(username);
+    @PostMapping("login")
+    public String login(@Validated @RequestBody LoginBody loginBody) {
+        // 用户登录
+        return authService.login(loginBody);
     }
 
-    @GetMapping("login2")
-    public LoginUser login2(String username) {
-        if(true){
-            throw new BaseException("测试错误");
-        }
-        return authService.login(username);
-    }
 
 }

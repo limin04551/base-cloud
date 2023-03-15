@@ -34,12 +34,10 @@ public class RemoteUserServiceImpl implements RemoteUserService {
         User user = userMapper.selectOne(Wrappers.<User>lambdaQuery().eq(User::getUserName, username));
 
         if (ObjectUtil.isNull(user)) {
-//            throw new RuntimeException("用户不存在");
-            throw new BaseException("用户不存在");
-
+            throw new BaseException("user.not.exists", username);
         }
-        if (user.getStatus().equals(UserStatus.DISABLE.getCode())) {
-            throw new BaseException("用户被禁用");
+        if (UserStatus.DISABLE.getCode().equals(user.getStatus())) {
+            throw new BaseException("user.blocked", username);
         }
         // 此处可根据登录用户的数据不同 自行创建 loginUser
         return buildLoginUser(user);

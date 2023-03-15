@@ -52,6 +52,12 @@
                 <artifactId>base-common-redis</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <!-- 认证框架 -->
+            <dependency>
+                <groupId>com.base</groupId>
+                <artifactId>base-common-sa-token</artifactId>
+                <version>${project.version}</version>
+            </dependency>
         </dependencies>
 
     </dependencyManagement>

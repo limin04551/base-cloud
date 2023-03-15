@@ -8,12 +8,17 @@ import jakarta.validation.ValidationException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.rpc.RpcException;
 import org.springframework.core.MethodParameter;
+import org.springframework.http.HttpMessage;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
@@ -51,18 +56,23 @@ public class GlobalExceptionHandler implements ResponseBodyAdvice<Object> {
 
     @ExceptionHandler(NoHandlerFoundException.class)
     public R handleNoHandlerFoundException(NoHandlerFoundException e) {
-        return new R<>(HttpStatus.NOT_FOUND,"请求地址不存在");
+        return new R<>(HttpStatus.NOT_FOUND, "请求地址不存在");
+    }
+
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public R handleHttpMessageNotReadableExceptionException(HttpMessageNotReadableException e) {
+        return new R<>(HttpStatus.ERROR, "请求体缺失");
     }
 
     @ExceptionHandler(IllegalStateException.class)
     public R handleIllegalStateException(IllegalStateException e) {
-        return new R<>(HttpStatus.ERROR,String.format("参数缺失:%s",e.getMessage()));
+        return new R<>(HttpStatus.ERROR, String.format("参数缺失:%s", e.getMessage()));
     }
 
     @ExceptionHandler(RpcException.class)
     public Object RpcExceptionHandler(RpcException e) {
-       e.printStackTrace();
-        return new R<>(HttpStatus.ERROR,e.getMessage());
+        e.printStackTrace();
+        return new R<>(HttpStatus.ERROR, e.getMessage());
     }
 
     @ExceptionHandler(BaseException.class)
@@ -72,7 +82,17 @@ public class GlobalExceptionHandler implements ResponseBodyAdvice<Object> {
 
     @ExceptionHandler(ValidationException.class)
     public R handleValidationExceptionException(ValidationException e) {
-        return new R<>(HttpStatus.ERROR,e.getMessage());
+        return new R<>(HttpStatus.ERROR, e.getMessage());
+    }
+
+    @ExceptionHandler({MethodArgumentNotValidException.class, MethodArgumentTypeMismatchException.class})
+    public R methodArgumentNotValidExceptionHandler(MethodArgumentNotValidException e) {
+        String message = "";
+        for (ObjectError error : e.getBindingResult().getAllErrors()) {
+            message += error.getDefaultMessage() + ";";
+        }
+        ObjectError error = e.getBindingResult().getAllErrors().get(0);
+        return new R<>(HttpStatus.ERROR, message);
     }
 
     /**
@@ -84,7 +104,7 @@ public class GlobalExceptionHandler implements ResponseBodyAdvice<Object> {
     @ExceptionHandler(Exception.class)
     public R handleException(Exception e) {
         // 打印堆栈信息
-        if(e.getStackTrace().length>0){
+        if (e.getStackTrace().length > 0) {
             log.error(e.getStackTrace()[0].getClassName());
             log.error(e.getStackTrace()[0].getLineNumber() + "行 ");
         }

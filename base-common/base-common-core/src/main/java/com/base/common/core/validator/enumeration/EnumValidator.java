@@ -2,7 +2,7 @@ package com.base.common.core.validator.enumeration;
 
 
 
-import com.base.common.core.enumeration.BaseEnum;
+import com.base.common.core.enums.BaseEnum;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 

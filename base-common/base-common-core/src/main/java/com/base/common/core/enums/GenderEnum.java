@@ -1,4 +1,4 @@
-package com.base.common.core.enumeration;
+package com.base.common.core.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

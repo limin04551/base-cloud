@@ -1,6 +1,5 @@
 package com.base.system.api.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.base.common.core.constant.CacheConstants;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,7 +7,6 @@ import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
 
 
@@ -95,7 +93,7 @@ public class LoginUser implements Serializable {
     /**
      * 密码
      */
-    @JsonIgnore
+//    @JsonIgnore
     private String password;
 
     /**

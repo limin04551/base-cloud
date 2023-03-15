@@ -13,7 +13,7 @@ import lombok.Getter;
 public enum UserStatus {
     OK(1, "正常"), DISABLE(0, "停用"), DELETED(2, "删除");
 
-    private final int code;
+    private final Integer code;
     private final String info;
 
 }
