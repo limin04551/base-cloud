@@ -45,7 +45,7 @@
 |  ✅   | 数据库框架    | Mybatis-Plus             | [Mybatis-Plus文档](https://baomidou.com/guide/)                                                      | 快速 CRUD 增加开发效率                    |
 |  ❌   | 数据库框架    | P6spy                    | [p6spy官网](https://p6spy.readthedocs.io/)                                                           | 更强劲的 SQL 分析                       |
 |  ✅   | 多数据源框架   | Dynamic-Datasource       | [dynamic-ds文档](https://www.kancloud.cn/tracy5546/dynamic-datasource/content)                       | 支持主从与多种类数据库异构                     |
-|  ✅   | 序列化框架    | Jackson                  | [Jackson官网](https://github.com/FasterXML/jackson)                                                  | 统一使用 jackson 高效可靠                 |
+|  ✅   | 序列化框架    | fastjson2                | [fastjson2官网](https://github.com/alibaba/fastjson2)                                                | 统一使用 fastjson2 高效~~安全~~           |
 |  ✅   | Redis客户端 | Redisson                 | [Redisson文档](https://github.com/redisson/redisson/wiki/%E7%9B%AE%E5%BD%95)                         | 支持单机、集群配置                         |
 |  ✅   | 校验框架与完善  | Validation               | [Validation文档](https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/)     | 增强接口安全性、严谨性 支持国际化                 |
 |  ❌   | Excel框架  | Alibaba EasyExcel        | [EasyExcel文档](https://www.yuque.com/easyexcel/doc/easyexcel)                                       | 性能优异 扩展性强                         |
