@@ -70,8 +70,12 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <dependency>
+            <groupId>com.base</groupId>
+            <artifactId>base-common-sa-token</artifactId>
+        </dependency>
 
-<!--                <dependency>-->
+        <!--                <dependency>-->
 <!--                    <groupId>com.baomidou</groupId>-->
 <!--                    <artifactId>mybatis-plus-generator</artifactId>-->
 <!--                    <version>3.4.1</version>-->

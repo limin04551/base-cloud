@@ -16,6 +16,7 @@
         <dependency>
             <groupId>com.base</groupId>
             <artifactId>base-common-core</artifactId>
+            <optional>true</optional>
         </dependency>
     </dependencies>
 

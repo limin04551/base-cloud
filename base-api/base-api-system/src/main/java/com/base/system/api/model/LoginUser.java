@@ -1,6 +1,5 @@
 package com.base.system.api.model;
 
-import com.base.common.core.constant.CacheConstants;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
@@ -119,7 +118,7 @@ public class LoginUser implements Serializable {
         if (userId == null) {
             throw new IllegalArgumentException("用户ID不能为空");
         }
-        return userType + CacheConstants.LOGINID_JOIN_CODE + userId;
+        return userType + ":" + userId;
     }
 
 }

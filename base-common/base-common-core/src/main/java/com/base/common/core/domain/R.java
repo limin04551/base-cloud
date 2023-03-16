@@ -2,7 +2,6 @@ package com.base.common.core.domain;
 
 import cn.hutool.core.date.DateTime;
 import com.base.common.core.constant.HttpStatus;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 

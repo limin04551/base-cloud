@@ -1,4 +1,4 @@
-package com.base.commom.redis.utils;
+package com.base.common.redis.utils;
 
 import com.base.common.core.utils.SpringUtils;
 import lombok.AccessLevel;

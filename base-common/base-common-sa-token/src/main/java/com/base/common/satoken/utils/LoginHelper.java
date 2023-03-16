@@ -2,17 +2,9 @@ package com.base.common.satoken.utils;
 
 import cn.dev33.satoken.context.SaHolder;
 import cn.dev33.satoken.stp.StpUtil;
-import cn.hutool.core.util.ObjectUtil;
-//import com.ruoyi.common.core.constant.UserConstants;
-//import com.ruoyi.common.core.enums.DeviceType;
-//import com.ruoyi.common.core.enums.UserType;
-//import com.ruoyi.common.core.exception.UtilException;
-//import com.ruoyi.common.core.utils.StringUtils;
-//import com.ruoyi.system.api.model.LoginUser;
 import com.base.common.core.constant.UserConstants;
 import com.base.common.core.enums.DeviceType;
 import com.base.common.core.enums.UserType;
-import com.base.common.core.exception.base.BaseException;
 import com.base.system.api.model.LoginUser;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -21,13 +13,13 @@ import lombok.NoArgsConstructor;
  * 登录鉴权助手
  *
  * user_type 为 用户类型 同一个用户表 可以有多种用户类型 例如 pc,app
- * deivce 为 设备类型 同一个用户类型 可以有 多种设备类型 例如 web,ios
+ * device 为 设备类型 同一个用户类型 可以有 多种设备类型 例如 web,ios
  * 可以组成 用户类型与设备类型多对多的 权限灵活控制
  *
  * 多用户体系 针对 多种用户类型 但权限控制不一致
  * 可以组成 多用户类型表与多设备类型 分别控制权限
  *
- * @author Lion Li
+ * @author limin
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class LoginHelper {
@@ -69,6 +61,7 @@ public class LoginHelper {
      * 获取用户(多级缓存)
      */
     public static LoginUser getLoginUser() {
+        StpUtil.checkLogin();   // 检验当前会话是否已经登录，如未登录，则抛出异常
         LoginUser loginUser = (LoginUser) SaHolder.getStorage().get(LOGIN_USER_KEY);
         if (loginUser != null) {
             return loginUser;
@@ -109,7 +102,7 @@ public class LoginHelper {
     }
 
     /**
-     * 是否为管理员
+     * 是否为超级管理员
      *
      * @param userId 用户ID
      * @return 结果

@@ -1,5 +1,6 @@
 package com.base.common.core.handle;
 
+import cn.dev33.satoken.exception.*;
 import com.base.common.core.annotation.IgnorReponseAdvice;
 import com.base.common.core.constant.HttpStatus;
 import com.base.common.core.domain.R;
@@ -15,10 +16,12 @@ import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+import org.springframework.web.multipart.MultipartException;
 import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
@@ -81,9 +84,20 @@ public class GlobalExceptionHandler implements ResponseBodyAdvice<Object> {
     }
 
     @ExceptionHandler(ValidationException.class)
-    public R handleValidationExceptionException(ValidationException e) {
+    public R handleValidationException(ValidationException e) {
         return new R<>(HttpStatus.ERROR, e.getMessage());
     }
+
+    @ExceptionHandler(MultipartException.class)
+    public R handleMultipartException(MultipartException e) {
+        return new R<>(HttpStatus.ERROR, "非法Multipart请求");
+    }
+
+    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+    public R HttpRequestMethodNotSupportedExceptionHandler(HttpRequestMethodNotSupportedException e) {
+        return new R<>(HttpStatus.ERROR, "请求方式不支持");
+    }
+
 
     @ExceptionHandler({MethodArgumentNotValidException.class, MethodArgumentTypeMismatchException.class})
     public R methodArgumentNotValidExceptionHandler(MethodArgumentNotValidException e) {
@@ -91,8 +105,44 @@ public class GlobalExceptionHandler implements ResponseBodyAdvice<Object> {
         for (ObjectError error : e.getBindingResult().getAllErrors()) {
             message += error.getDefaultMessage() + ";";
         }
-        ObjectError error = e.getBindingResult().getAllErrors().get(0);
         return new R<>(HttpStatus.ERROR, message);
+    }
+
+
+    // 拦截：未登录异常
+    @ExceptionHandler(NotLoginException.class)
+    public R handlerException(NotLoginException e) {
+        return new R<>(HttpStatus.ERROR, "未登录异常");
+    }
+
+    // 拦截：缺少权限异常
+    @ExceptionHandler(NotPermissionException.class)
+    public R handlerException(NotPermissionException e) {
+        return new R<>(HttpStatus.ERROR, "缺少权限：" + e.getPermission());
+    }
+
+    // 拦截：缺少角色异常
+    @ExceptionHandler(NotRoleException.class)
+    public R handlerException(NotRoleException e) {
+        return new R<>(HttpStatus.ERROR, "缺少角色：" + e.getRole());
+    }
+
+    // 拦截：二级认证校验失败异常
+    @ExceptionHandler(NotSafeException.class)
+    public R handlerException(NotSafeException e) {
+        return new R<>(HttpStatus.ERROR, "二级认证校验失败：" + e.getService());
+    }
+
+    // 拦截：服务封禁异常
+    @ExceptionHandler(DisableServiceException.class)
+    public R handlerException(DisableServiceException e) {
+        return new R<>(HttpStatus.ERROR, "当前账号 " + e.getService() + " 服务已被封禁 (level=" + e.getLevel() + ")：" + e.getDisableTime() + "秒后解封");
+    }
+
+    // 拦截：Http Basic 校验失败异常
+    @ExceptionHandler(NotBasicAuthException.class)
+    public R handlerException(NotBasicAuthException e) {
+        return new R<>(HttpStatus.ERROR, "缺少角色：" + e.getMessage());
     }
 
     /**

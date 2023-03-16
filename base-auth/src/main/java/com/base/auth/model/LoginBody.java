@@ -9,7 +9,7 @@ import org.hibernate.validator.constraints.Length;
 /**
  * 用户登录对象
  *
- * @author Lion Li
+ * @author limin
  */
 @Data
 @NoArgsConstructor

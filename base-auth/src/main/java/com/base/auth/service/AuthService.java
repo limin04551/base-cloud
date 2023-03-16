@@ -8,7 +8,7 @@ import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.base.auth.config.UserPasswordConfig;
 import com.base.auth.model.LoginBody;
-import com.base.commom.redis.utils.RedisUtils;
+import com.base.common.redis.utils.RedisUtils;
 import com.base.common.core.constant.CacheConstants;
 import com.base.common.core.constant.Constants;
 import com.base.common.core.enums.DeviceType;

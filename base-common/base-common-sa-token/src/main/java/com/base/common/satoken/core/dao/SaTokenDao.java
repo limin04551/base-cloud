@@ -1,7 +1,7 @@
 package com.base.common.satoken.core.dao;
 
 import cn.dev33.satoken.util.SaFoxUtil;
-import com.base.commom.redis.utils.RedisUtils;
+import com.base.common.redis.utils.RedisUtils;
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -20,7 +20,8 @@ public class SaTokenDao implements cn.dev33.satoken.dao.SaTokenDao {
      */
     @Override
     public String get(String key) {
-        return RedisUtils.getCacheObject(key);
+        String s =  RedisUtils.getCacheObject(key);
+        return s;
     }
 
     /**
