@@ -29,7 +29,7 @@
         <spring-cloud.version>2022.0.1</spring-cloud.version>
         <spring-cloud-alibaba.version>2022.0.0.0-RC1</spring-cloud-alibaba.version>
         <spring-cloud-starter-oauth2.version>2.2.5.RELEASE</spring-cloud-starter-oauth2.version>
-        <druid.version>1.2.9</druid.version>
+        <druid.version>1.2.16</druid.version>
         <hutool.version>5.8.0</hutool.version>
         <mysql-connector.version>8.0.32</mysql-connector.version>
         <satoken.version>1.34.0</satoken.version>
@@ -38,6 +38,7 @@
         <p6spy.version>3.9.1</p6spy.version>
         <dubbo.version>3.2.0-beta.5</dubbo.version>
         <jackson.version>2.14.2</jackson.version>
+        <fastjson2.version>2.0.25</fastjson2.version>
         <redission.version>3.20.0</redission.version>
         <lock4j.version>2.2.4</lock4j.version>
     </properties>
@@ -186,6 +187,12 @@
 
             <dependency>
                 <groupId>cn.dev33</groupId>
+                <artifactId>sa-token-core</artifactId>
+                <version>${satoken.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.dev33</groupId>
                 <artifactId>sa-token-jwt</artifactId>
                 <version>${satoken.version}</version>
             </dependency>
@@ -195,6 +202,18 @@
                 <groupId>org.apache.dubbo</groupId>
                 <artifactId>dubbo</artifactId>
                 <version>${dubbo.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba.fastjson2</groupId>
+                <artifactId>fastjson2</artifactId>
+                <version>${fastjson2.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba.fastjson2</groupId>
+                <artifactId>fastjson2-extension-spring6</artifactId>
+                <version>${fastjson2.version}</version>
             </dependency>
 
 <!--            <dependency>-->
