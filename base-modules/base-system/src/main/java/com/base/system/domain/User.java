@@ -1,16 +1,17 @@
 package com.base.system.domain;
 
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.*;
+
 import java.util.Date;
-import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
+import java.util.List;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author jiuyue
@@ -26,7 +27,7 @@ public class User implements Serializable {
     /**
      * 用户ID
      */
-      @TableId(value = "user_id", type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.AUTO)
     private Long userId;
 
     /**
@@ -80,8 +81,9 @@ public class User implements Serializable {
     private Integer status;
 
     /**
-     * 删除标志（0代表存在 id代表删除）
+     * 逻辑删除（0:代表存在 id:代表删除）
      */
+    @TableLogic
     private Long delFlag;
 
     /**
@@ -119,5 +121,13 @@ public class User implements Serializable {
      */
     private String remark;
 
+    @TableField(exist = false)
+    private List<Role> roles;
+
+    /**
+     * 角色组
+     */
+    @TableField(exist = false)
+    private Long[] roleIds;
 
 }

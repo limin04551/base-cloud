@@ -38,7 +38,7 @@ public class UserController {
      */
 //    @SaCheckLogin
     @GetMapping("getUserInfo")
-    public User getInfo(HttpServletRequest request) {
+    public LoginUser getInfo(HttpServletRequest request) {
         Enumeration<String> headerNames = request.getHeaderNames();
        while(headerNames.hasMoreElements()){
             String value = headerNames.nextElement();//调用nextElement方法获得元素
@@ -46,8 +46,7 @@ public class UserController {
         }
 
         LoginUser loginUser = LoginHelper.getLoginUser();
-        User user = userService.getById(loginUser.getUserId());
-        return user;
+        return loginUser;
     }
 
     @GetMapping("list")

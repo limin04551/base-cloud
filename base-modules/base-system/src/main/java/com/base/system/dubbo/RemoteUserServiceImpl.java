@@ -9,6 +9,7 @@ import com.base.system.api.RemoteUserService;
 import com.base.system.api.model.LoginUser;
 import com.base.system.domain.User;
 import com.base.system.mapper.UserMapper;
+import com.base.system.service.PermissionService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboService;
@@ -28,6 +29,7 @@ public class RemoteUserServiceImpl implements RemoteUserService {
 
     private final UserMapper userMapper;
 
+    private final PermissionService permissionService;
 
     @Override
     public LoginUser getUserInfo(String username) throws BaseException {
@@ -49,6 +51,8 @@ public class RemoteUserServiceImpl implements RemoteUserService {
     private LoginUser buildLoginUser(User user) {
         LoginUser loginUser = new LoginUser();
         BeanUtil.copyProperties(user, loginUser);
+        loginUser.setMenuPermission(permissionService.getMenuPermission(user));
+        loginUser.setRolePermission(permissionService.getRolePermission(user));
         return loginUser;
     }
 

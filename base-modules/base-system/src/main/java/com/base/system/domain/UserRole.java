@@ -1,5 +1,6 @@
 package com.base.system.domain;
 
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -22,16 +23,24 @@ public class UserRole implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @TableId(value = "id", type = IdType.AUTO)
+    private Long userRoleId;
+
     /**
      * 用户ID
      */
-      @TableId(value = "user_id", type = IdType.AUTO)
     private Long userId;
 
     /**
      * 角色ID
      */
     private Long roleId;
+
+    /**
+     * 逻辑删除（0:代表存在 id:代表删除）
+     */
+    @TableLogic
+    private Long delFlag;
 
 
 }

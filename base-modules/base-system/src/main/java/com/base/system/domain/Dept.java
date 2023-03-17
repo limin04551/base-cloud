@@ -1,10 +1,15 @@
 package com.base.system.domain;
 
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
+
 import java.util.Date;
+
 import com.baomidou.mybatisplus.annotation.TableId;
+
 import java.io.Serializable;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -26,7 +31,7 @@ public class Dept implements Serializable {
     /**
      * 部门id
      */
-      @TableId(value = "dept_id", type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.AUTO)
     private Long deptId;
 
     /**
@@ -70,9 +75,10 @@ public class Dept implements Serializable {
     private String status;
 
     /**
-     * 删除标志（0:代表存在 id:代表删除）
+     * 逻辑删除（0:代表存在 id:代表删除）
      */
-    private String delFlag;
+    @TableLogic
+    private Long delFlag;
 
     /**
      * 创建者

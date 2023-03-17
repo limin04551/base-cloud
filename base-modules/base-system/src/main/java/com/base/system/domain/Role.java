@@ -1,10 +1,11 @@
 package com.base.system.domain;
 
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.*;
+
 import java.util.Date;
-import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
+import java.util.Set;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -26,7 +27,7 @@ public class Role implements Serializable {
     /**
      * 角色ID
      */
-      @TableId(value = "role_id", type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.AUTO)
     private Long roleId;
 
     /**
@@ -65,8 +66,9 @@ public class Role implements Serializable {
     private Boolean status;
 
     /**
-     * 删除标志（0:代表存在 id:代表删除）
+     * 逻辑删除（0:代表存在 id:代表删除）
      */
+    @TableLogic
     private Long delFlag;
 
     /**
@@ -93,6 +95,18 @@ public class Role implements Serializable {
      * 备注
      */
     private String remark;
+
+    /**
+     * 菜单组
+     */
+    @TableField(exist = false)
+    private Long[] menuIds;
+
+    /**
+     * 角色菜单权限
+     */
+    @TableField(exist = false)
+    private Set<String> permissions;
 
 
 }
