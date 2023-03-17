@@ -20,8 +20,7 @@ public class SaTokenDao implements cn.dev33.satoken.dao.SaTokenDao {
      */
     @Override
     public String get(String key) {
-        String s =  RedisUtils.getCacheObject(key);
-        return s;
+        return RedisUtils.getCacheObject(key);
     }
 
     /**
