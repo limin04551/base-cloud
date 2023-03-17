@@ -1,7 +1,7 @@
 package com.base.common.core.config;
 
 import com.alibaba.fastjson2.support.spring6.http.converter.FastJsonHttpMessageConverter;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -9,13 +9,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.List;
-//import com.alibaba.fastjson2.support.spring.http.converter.FastJsonHttpMessageConverter;
 /**
  * @author limin
  * @description
  * @date 2023/3/16
  */
-@Configuration
+@ConditionalOnClass(WebMvcConfigurer.class)
 public class JsonMessageConverterConfigurer implements WebMvcConfigurer {
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {

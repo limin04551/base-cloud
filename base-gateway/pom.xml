@@ -33,6 +33,11 @@
             <artifactId>spring-cloud-starter-loadbalancer</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.base</groupId>
+            <artifactId>base-common-core</artifactId>
+        </dependency>
+
 
     </dependencies>
 

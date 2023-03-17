@@ -8,6 +8,7 @@ import com.base.common.core.exception.base.BaseException;
 import jakarta.validation.ValidationException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.rpc.RpcException;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.HttpMessage;
 import org.springframework.http.MediaType;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.multipart.MultipartException;
 import org.springframework.web.servlet.NoHandlerFoundException;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 /**
@@ -31,6 +33,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
  * @date 2021/1/18
  */
 @Slf4j
+@ConditionalOnClass(ResponseBodyAdvice.class)
 @RestControllerAdvice
 public class GlobalExceptionHandler implements ResponseBodyAdvice<Object> {
 
