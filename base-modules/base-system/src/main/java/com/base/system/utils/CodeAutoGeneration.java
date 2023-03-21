@@ -1,7 +1,7 @@
 package com.base.system.utils;
 
-import com.baomidou.mybatisplus.annotation.DbType;
-import com.baomidou.mybatisplus.annotation.IdType;
+//import com.baomidou.mybatisplus.annotation.DbType;
+//import com.baomidou.mybatisplus.annotation.IdType;
 //import com.baomidou.mybatisplus.generator.AutoGenerator;
 //import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
 //import com.baomidou.mybatisplus.generator.config.GlobalConfig;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * @author min
- * @description
+ * @description 
  * @date 2020/12/24
  */
 
@@ -22,9 +22,10 @@ public class CodeAutoGeneration {
 
     /*public static void main(String[] args) {
         CodeAutoGeneration.generation(false,
-                "/base-modules/base-storage",
-                "storage",
-                "t_storage"
+                "/base-modules/base-system",
+                "system",
+                "sys_dict_data",
+                "sys_dict_type"
                 );
     }
 
@@ -64,7 +65,7 @@ public class CodeAutoGeneration {
         mpg.setPackageInfo(pc);
         //4、策略配置
         StrategyConfig strategy = new StrategyConfig();
-        strategy.setTablePrefix("t_");
+        strategy.setTablePrefix("sys_");
         strategy.setInclude(tableName);
         strategy.setRestControllerStyle(true);
         strategy.setControllerMappingHyphenStyle(true);
@@ -72,6 +73,7 @@ public class CodeAutoGeneration {
         strategy.setRestControllerStyle(true);
         strategy.setNaming(NamingStrategy.underline_to_camel);
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
+         strategy.setLogicDeleteFieldName("del_flag");
         mpg.setStrategy(strategy);
         mpg.execute(); //执行
         System.out.println("生成成功");

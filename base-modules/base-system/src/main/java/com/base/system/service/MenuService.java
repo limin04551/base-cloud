@@ -2,6 +2,7 @@ package com.base.system.service;
 
 import com.base.system.domain.Menu;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.base.system.domain.vo.RouterVo;
 
 import java.util.List;
 import java.util.Set;
@@ -31,4 +32,8 @@ public interface MenuService extends IService<Menu> {
      * @return 权限列表
      */
     Set<String> selectMenuPermsByUserId(Long userId);
+
+    List<Menu> selectMenuTreeByUserId(Long userId);
+
+    List<RouterVo> buildMenus(List<Menu> menus);
 }

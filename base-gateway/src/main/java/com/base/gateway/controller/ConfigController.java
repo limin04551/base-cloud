@@ -17,22 +17,4 @@ import org.springframework.web.bind.annotation.RestController;
 @RefreshScope //支持Nacos的动态刷新功能。
 public class ConfigController {
 
-    @JsonIgnore
-    @Value("${file.web-path:''}")
-    private String webUrl;
-
-    @Value("${useLocal:false}")
-    private Boolean useLocal;
-
-
-    @GetMapping("webUrl")
-    public String webUrl(){
-        return webUrl;
-    }
-
-    @GetMapping("useLocal")
-    public Boolean useLocal(){
-        return useLocal;
-    }
-
 }

@@ -18,7 +18,6 @@ import java.util.Map;
  */
 @RestController
 @AllArgsConstructor
-@RequestMapping("auth")
 public class AuthController {
 
     private final AuthService authService;
@@ -27,6 +26,14 @@ public class AuthController {
     public String login(@Validated @RequestBody LoginBody loginBody) {
         // 用户登录
         return authService.login(loginBody);
+    }
+
+    /**
+     * 登出方法
+     */
+    @PostMapping("logout")
+    public void logout() {
+        authService.logout();
     }
 
 

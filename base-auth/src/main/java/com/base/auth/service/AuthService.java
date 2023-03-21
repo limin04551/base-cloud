@@ -3,6 +3,7 @@ package com.base.auth.service;
 
 //import cn.hutool.core.util.ObjectUtil;
 //import cn.hutool.crypto.digest.BCrypt;
+import cn.dev33.satoken.exception.NotLoginException;
 import cn.dev33.satoken.secure.BCrypt;
 import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.util.ObjectUtil;
@@ -84,4 +85,7 @@ public class AuthService {
         RedisUtils.deleteObject(errorKey);
     }
 
+    public void logout() {
+        StpUtil.logout();
+    }
 }

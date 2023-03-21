@@ -2,8 +2,7 @@ package com.base.common.core.constant;
 
 /**
  * 用户常量信息
- *
- * @author ruoyi
+ * @author limin
  */
 public interface UserConstants {
     /**
@@ -49,12 +48,12 @@ public interface UserConstants {
     /**
      * 部门停用状态
      */
-    String DEPT_DISABLE = "1";
+    int DEPT_DISABLE = 0;
 
     /**
      * 字典正常状态
      */
-    String DICT_NORMAL = "0";
+    int DICT_NORMAL = 1;
 
     /**
      * 是否为系统默认（是）
@@ -64,37 +63,37 @@ public interface UserConstants {
     /**
      * 是否菜单外链（是）
      */
-    String YES_FRAME = "0";
+    int YES_FRAME = 1;
 
     /**
      * 是否菜单外链（否）
      */
-    String NO_FRAME = "1";
+    int NO_FRAME = 0;
 
     /**
      * 菜单正常状态
      */
-    String MENU_NORMAL = "0";
+    int MENU_NORMAL = 1;
 
     /**
      * 菜单停用状态
      */
-    String MENU_DISABLE = "1";
+    int MENU_DISABLE = 0;
 
     /**
      * 菜单类型（目录）
      */
-    String TYPE_DIR = "M";
+    String TYPE_DIR = "C";
 
     /**
      * 菜单类型（菜单）
      */
-    String TYPE_MENU = "C";
+    String TYPE_MENU = "M";
 
     /**
      * 菜单类型（按钮）
      */
-    String TYPE_BUTTON = "F";
+    String TYPE_BUTTON = "B";
 
     /**
      * Layout组件标识
@@ -114,9 +113,9 @@ public interface UserConstants {
     /**
      * 校验返回结果码
      */
-    String UNIQUE = "0";
+    int UNIQUE = 1;
 
-    String NOT_UNIQUE = "1";
+    int NOT_UNIQUE = 0;
 
     /**
      * 用户名长度限制

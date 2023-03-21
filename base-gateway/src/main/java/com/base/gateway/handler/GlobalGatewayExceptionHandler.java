@@ -45,9 +45,10 @@ public class GlobalGatewayExceptionHandler implements ErrorWebExceptionHandler {
         }
 
         String msg;
-        if (ex instanceof NotFoundException) {
+   /*     if (ex instanceof NotFoundException) {
             msg = "服务未找到";
-        } else if (ex instanceof ResponseStatusException) {
+        } else */
+        if (ex instanceof ResponseStatusException) {
             ResponseStatusException responseStatusException = (ResponseStatusException) ex;
             msg = responseStatusException.getMessage();
             if (msg.equals("404 NOT_FOUND")) {

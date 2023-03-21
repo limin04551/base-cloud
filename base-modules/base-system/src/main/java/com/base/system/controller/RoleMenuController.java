@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2023-03-07
  */
 @RestController
-@RequestMapping("/system/role-menu")
+@RequestMapping("/role-menu")
 public class RoleMenuController {
 
 }

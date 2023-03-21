@@ -25,6 +25,11 @@ public class LoginUser implements Serializable {
     private Long userId;
 
     /**
+     * 头像地址
+     */
+    private String avatar;
+
+    /**
      * 部门ID
      */
     private Long deptId;

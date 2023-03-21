@@ -1,12 +1,13 @@
 package com.base.system.domain;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import java.util.Date;
-import com.baomidou.mybatisplus.annotation.TableId;
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.*;
 
-import com.baomidou.mybatisplus.annotation.TableLogic;
-import com.baomidou.mybatisplus.annotation.TableName;
+import java.util.ArrayList;
+import java.util.Date;
+import java.io.Serializable;
+import java.util.List;
+
+import com.base.common.core.domain.TreeEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -21,7 +22,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("sys_menu")
-public class Menu implements Serializable {
+public class Menu extends TreeEntity<Menu> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -64,12 +65,12 @@ public class Menu implements Serializable {
     /**
      * 是否为外链（1:是 0:否）
      */
-    private Boolean isFrame;
+    private Integer isFrame;
 
     /**
      * 是否缓存（1:缓存 0:不缓存）
      */
-    private Boolean isCache;
+    private Integer isCache;
 
     /**
      * 菜单类型（C:目录 M:菜单 B:按钮）
@@ -126,4 +127,6 @@ public class Menu implements Serializable {
      */
     @TableLogic
     private Long delFlag;
+
+
 }

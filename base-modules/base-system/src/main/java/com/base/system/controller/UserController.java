@@ -25,7 +25,7 @@ import java.util.*;
  * @since 2023-03-06
  */
 @RestController
-@RequestMapping("/system/user")
+@RequestMapping("/user")
 @AllArgsConstructor
 public class UserController {
 

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2023-03-07
  */
 @RestController
-@RequestMapping("/system/role-dept")
+@RequestMapping("/role-dept")
 public class RoleDeptController {
 
 }
